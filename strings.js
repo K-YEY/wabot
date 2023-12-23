@@ -79,7 +79,7 @@ https://alx-feb-resources.notion.site/ALX-Resources-1660799bece74b2f9afb1bcc24df
 
 const alxCo18 = `أصدقائي المؤاجلين برجاء الدخول الى هذا الجروب https://chat.whatsapp.com/LK54CJZHDIk7hNY0JZhbCo
 والخروج من هنا `;
-
+const alxfull = 'https://alx-feb-resources.notion.site/ALX-Resources-1660799bece74b2f9afb1bcc24dff313';
 const notion = `https://alxco17.notion.site/75f43668a4254c88a3a856fc8f75defe?v=cfa592b3dd4544a7a3727d764c4e2516`;
 
 const alxLink = `https://chat.whatsapp.com/J3dKAPQIJpfHdHfyVJiQiH`;
@@ -91,10 +91,12 @@ CO18 => لينك جروب COHORT 18 اسكندرية
 #group => لينك جروب اسكندرية 17
 team=> ازي تدخل تيمك ف slack
 notion => بنزل عليها حاجات مهمه
-#time<space> time GMT => لحساب فرق التوقيت بين مصر و غرينتش `;
+#time<space> time GMT => لحساب فرق التوقيت بين مصر و غرينتش 
+!gpt => بعدها تكت سوالك خاص ل LEO
+`;
 
 const hi = `اكتب ساعدني و`;
-const botName = ["فتحي", "نايت", "Night", "Leo", "ALX", "بوت", "حنفي", "ليو"];
+const botName = ["فتحي", "نايت", "night", "leo", "alx", "بوت", "حنفي", "ليو"];
 //end
 const cache = new Map();
 
@@ -109,6 +111,9 @@ cache.set("posts:6", { id: "#group", content: alxLink });
 cache.set("posts:7", { id: "لينك الجروب", content: alxLink });
 cache.set("posts:8", { id: "team", content: alxTeam });
 cache.set("posts:9", { id: "notion", content: notion });
+cache.set("posts:10", { id: "كل المصادر", content: alxfull });
+cache.set("posts:11", { id: "دراسة", content: alxfull });
+cache.set("posts:12", { id: "content", content: alxfull });
 
 //help
 cache.set("posts:10", { id: "#alxhelp", content: alxhelp });

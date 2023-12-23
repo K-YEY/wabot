@@ -5,7 +5,7 @@ async function handleMessage(msg) {
   let chat = await msg.getChat();
   const contact = await msg.getContact();
   let name = (contact.pushname || "").replace("~", "");
-  if (name === "Yahia Emad") {
+  if (name === "Yehia Emad") {
     name = "يا King";
   }
 

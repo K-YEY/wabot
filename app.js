@@ -1,6 +1,5 @@
 const qrcode = require("qrcode-terminal");
 const { Client, Buttons, LocalAuth } = require("whatsapp-web.js");
-
 const client = new Client({
   authStrategy: new LocalAuth({ clientId: "client-one" }),
 });
@@ -21,6 +20,7 @@ client.on("ready", () => {
 client.on("message", handleMessage);
 const welcomeMessage = "Welcome to WhatsApp!";
 
+client.initialize();
 // client.on("group_join", (notification) => {
 //   // User has joined or been added to the group.
 //   console.log("join", notification);
@@ -35,4 +35,3 @@ const welcomeMessage = "Welcome to WhatsApp!";
 //   console.log("leave", notification);
 //   notification.reply("User left.");
 // });
-client.initialize();

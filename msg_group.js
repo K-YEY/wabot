@@ -41,7 +41,7 @@ async function handleGroupMessage(chat, msg, name) {
   }
 
   if (
-    (msg.body === `start` || nextGame.includes(msg.body)) &&
+    (msg.body.toLowerCase() === `start` || nextGame.includes(msg.body.toLowerCase())) &&
     num.includes(msg.author)
   ) {
     play = 1;
@@ -58,7 +58,7 @@ async function handleGroupMessage(chat, msg, name) {
 }
 
 async function Author(chat, msg) {
-  if (msg.body === `score`) {
+  if (msg.body.toLowerCase() === `score`) {
     for (let i = 0; i < player.length; i++) {
       const currentPlayer = player[i];
       client.sendMessage(
@@ -67,11 +67,11 @@ async function Author(chat, msg) {
       );
     }
   }
-  if (msg.body === `clr`) {
+  if (msg.body.toLowerCase() === `clr`) {
     gamePlayed.splice(0, gamePlayed.length);
     player.splice(0, player.length);
   }
-  if (msg.body === `endGame`) {
+  if (msg.body.toLowerCase() === `endGame`) {
     play = 0;
   }
   if (num.includes(msg.author)) {
@@ -85,12 +85,13 @@ async function Author(chat, msg) {
           `);
     }
 
-    if (msg.body.startsWith("!subject ")) {
-      let newSubject = msg.body.slice(9);
+    if (msg.body.toLowerCase().startsWith("!subject ")) {
+      let newSubject = msg.body.toLowerCase().slice(9);
       chat.setSubject(newSubject);
     }
-
-    if (msg.body.startsWith("!desc ")) {
+  
+    
+    if (msg.body.toLowerCase().startsWith("!desc ")) {
       let newDescription = msg.body.slice(6);
       try {
         chat.setDescription(newDescription);
@@ -100,8 +101,8 @@ async function Author(chat, msg) {
       }
     }
 
-    if (msg.body.startsWith("!!admin")) {
-      const phoneNumber = msg.body.slice(9);
+    if (msg.body.toLowerCase().startsWith("!!admin")) {
+      const phoneNumber = msg.body.toLowerCase().slice(9);
 
       const participant = chat.participants.find(
         (participant) => participant.id.user === phoneNumber
@@ -111,16 +112,16 @@ async function Author(chat, msg) {
         const participantId = participant.id._serialized;
 
         await chat.promoteParticipants([participantId]);
-        await msg.reply(`${phoneNumber} has been promoted to Admin.`);
+        await msg.reply(`${phoneNumber} تمت الترقية للادمن`);
         msg.react("💯");
       } else {
-        await msg.reply(`${phoneNumber} is not found.`);
+        await msg.reply(`${phoneNumber} مش لقيه`);
         msg.react("⁉️");
       }
     }
 
-    if (msg.body.startsWith("!!unadmin")) {
-      const phoneNumber = msg.body.slice(11);
+    if (msg.body.toLowerCase().startsWith("!!unadmin")) {
+      const phoneNumber = msg.body.toLowerCase().slice(11);
 
       const participant = chat.participants.find(
         (participant) => participant.id.user === phoneNumber
@@ -152,8 +153,8 @@ async function Author(chat, msg) {
       }
     }
 
-    if (msg.body.startsWith("!!add ")) {
-      const phoneNumber = msg.body.slice(6);
+    if (msg.body.toLowerCase().startsWith("!!add")) {
+      const phoneNumber = msg.body.toLowerCase().slice(7);
       const contact = await client.getContactById(phoneNumber + "@c.us");
 
       if (contact) {
@@ -172,7 +173,7 @@ async function Author(chat, msg) {
       }
     }
 
-    if (everyone.includes(msg.body)) {
+    if (everyone.includes(msg.body.toLowerCase())) {
       const participants = chat.participants.map((participant) =>
         client.getContactById(participant.id._serialized)
       );
@@ -185,7 +186,9 @@ async function Author(chat, msg) {
 
 async function ContentMsg(chat, msg, name) {
   // ? Welcome
-  if (botName.includes(msg.body)) {
+
+
+  if (botName.includes(msg.body.toLowerCase())) {
     chat.sendStateTyping();
     const currentHour = new Date().getHours();
     let greeting = "";
@@ -211,7 +214,7 @@ async function ContentMsg(chat, msg, name) {
   }
 
   //? TIME
-  if (msg.body.startsWith("#time")) {
+  if (msg.body.toLowerCase().startsWith("#time")) {
     const timeString = msg.body.slice(6);
     const time = parseInt(timeString);
 
@@ -231,7 +234,7 @@ async function ContentMsg(chat, msg, name) {
   }
 
   //? THX
-  if (thx.includes(msg.body)) {
+  if (thx.includes(msg.body.toLowerCase())) {
     await msg.reply(`تحت امرك اي وقت ❤️`);
     msg.react("❤️");
   }
